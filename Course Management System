@@ -1,0 +1,64 @@
+class Course:
+    def __init__(self, name, duration, fee):
+        self.name = name
+        self.duration = duration
+        self.fee = fee
+
+    def category(self):
+        if self.duration < 6:
+            return "Short-Term"
+        else:
+            return "Long-Term"
+
+    def display(self):
+        print("\nCourse Name:", self.name)
+        print("Duration:", self.duration, "months")
+        print("Fee: ₹", self.fee)
+        print("Category:", self.category())
+
+
+class Institute:
+    def __init__(self):
+        self.courses = []
+
+    def add_course(self):
+        name = input("Enter Course Name: ")
+        duration = int(input("Enter Duration in Months: "))
+        fee = float(input("Enter Course Fee: "))
+
+        course = Course(name, duration, fee)
+        self.courses.append(course)
+
+        print("Course added successfully.")
+
+    def display_courses(self):
+        if len(self.courses) == 0:
+            print("No courses available.")
+        else:
+            print("\n----- COURSE INFORMATION -----")
+            for course in self.courses:
+                course.display()
+
+
+institute = Institute()
+
+while True:
+    print("\n===== INSTITUTE MENU =====")
+    print("1. Add Course")
+    print("2. Display All Courses")
+    print("3. Exit")
+
+    choice = input("Enter your choice: ")
+
+    if choice == "1":
+        institute.add_course()
+
+    elif choice == "2":
+        institute.display_courses()
+
+    elif choice == "3":
+        print("Program exited.")
+        break
+
+    else:
+        print("Invalid choice!")
