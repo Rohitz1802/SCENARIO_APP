@@ -1,0 +1,66 @@
+class Employee:
+    def __init__(self, emp_id, name, salary):
+        self.emp_id = emp_id
+        self.name = name
+        self.salary = salary
+
+    def category(self):
+        if self.salary >= 70000:
+            return "High Salary"
+        elif self.salary >= 40000:
+            return "Medium Salary"
+        else:
+            return "Low Salary"
+
+    def display(self):
+        print("\nEmployee ID:", self.emp_id)
+        print("Name:", self.name)
+        print("Salary: ₹", self.salary)
+        print("Category:", self.category())
+
+
+class Company:
+    def __init__(self):
+        self.employees = []
+
+    def add_employee(self):
+        emp_id = input("Enter Employee ID: ")
+        name = input("Enter Employee Name: ")
+        salary = float(input("Enter Salary: "))
+
+        employee = Employee(emp_id, name, salary)
+        self.employees.append(employee)
+
+        print("Employee added successfully.")
+
+    def display_all(self):
+        if len(self.employees) == 0:
+            print("No employee records found.")
+        else:
+            print("\n--- Employee Information ---")
+            for employee in self.employees:
+                employee.display()
+
+
+company = Company()
+
+while True:
+    print("\n===== COMPANY MENU =====")
+    print("1. Add Employee")
+    print("2. Display All Employees")
+    print("3. Exit")
+
+    choice = input("Enter your choice: ")
+
+    if choice == "1":
+        company.add_employee()
+
+    elif choice == "2":
+        company.display_all()
+
+    elif choice == "3":
+        print("Program exited.")
+        break
+
+    else:
+        print("Invalid choice!")
